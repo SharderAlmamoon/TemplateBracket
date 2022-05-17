@@ -34,11 +34,9 @@
 
    <div class="br-mainpanel">
 
-    @yield('contact')
+        @yield('contact')
 
-    </div><!-- br-pagebody -->
-
-     <!-- footer -->
+        <!-- footer -->
      @include('backend.includes._footer')
 
     </div><!-- br-mainpanel -->

@@ -17,7 +17,7 @@
           </a><!-- br-menu-link -->
           <ul class="br-menu-sub">
             <li class="sub-item"><a href="card-dashboard.html" class="sub-link">Manage Product</a></li>
-            <li class="sub-item"><a href="{{ Route('blank') }}" class="sub-link">Add Product</a></li>
+            <li class="sub-item"><a href="{{ Route('add') }}" class="sub-link">Add Product</a></li>
           </ul>
         </li>
      </ul>

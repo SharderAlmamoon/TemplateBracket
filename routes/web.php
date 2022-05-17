@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('backend.dashboard');
 })->name('dashboard');
 
-Route::get('blank', function () {
-    return view('backend.blank');
-})->name('blank');
+Route::get('add', function () {
+    return view('backend.pages.product.addproduct');
+})->name('add');
 
 // Route::group(['prefix'=>'product'],function(){
 //     Route::get('/store',function(){
