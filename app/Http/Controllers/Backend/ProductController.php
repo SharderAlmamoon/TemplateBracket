@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Backend\Product;
 
 class ProductController extends Controller
 {
@@ -24,7 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.product.addproduct');
     }
 
     /**
@@ -35,7 +36,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $product=new Product();
+
+        $product->pname = $request->pname;
+        $product->pdescription = $request->pdescription;
+        $product->pcategory = $request->pcategory;
+        $product->psize = $request->psize;
+        $product->pcostprice = $request->pcostprice;
+        $product->psellprice =$request->psellprice; 
+        $product->pquantity =$request->pquantity; 
+        $product->pstatus = $request->pstatus;
+        // dd($product);
+        $product->save();
+        return redirect()->route('dashboard');
+
     }
 
     /**

@@ -17,12 +17,19 @@ Route::get('/', function () {
     return view('backend.dashboard');
 })->name('dashboard');
 
-Route::get('add', function () {
-    return view('backend.pages.product.addproduct');
-})->name('add');
+
 
 // Route::group(['prefix'=>'product'],function(){
 //     Route::get('/store',function(){
 //         return view
 //     });
 // });
+Route::group(['prefix'=>'/product'],function(){
+
+    Route::post('/store','App\Http\Controllers\Backend\ProductController@store')->name('store');
+
+    Route::get('/create','App\Http\Controllers\Backend\ProductController@create')->name('create');
+    
+
+
+});

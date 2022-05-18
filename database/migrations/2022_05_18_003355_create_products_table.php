@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('pname',50);
+            $table->string('pname',50)->unique();
             $table->text('pdescription');
             $table->string('pcategory');
             $table->string('psize');
             $table->integer('pcostprice');
             $table->integer('psellprice');
-            $table->integer('pquantity');
-            $table->string('pstatus');
+            $table->integer('pquantity')->nullable();
+            $table->integer('pstatus')->default(1)->comment('1 for Active 2 For Inactive');
             $table->timestamps();
         });
     }

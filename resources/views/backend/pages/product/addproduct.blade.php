@@ -13,7 +13,8 @@
         <div class="row row-sm">
           <div class="col-sm-12">
             <div class="card p-3 shadow-base">
-              <form action="" method="post">
+              <form action="{{ Route('store') }}" method="post">
+                @csrf
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -26,7 +27,7 @@
                       </div>
                       <div class="form-group">
                         <select name="pcategory"  class="form-control">
-                          <option value="cate">----Category----</option>
+                          <option value="">----Category----</option>
                           <option value="Mans">Mans</option>
                           <option value="WoMan">WoMan</option>
                           <option value="kids">Kids</option>
@@ -36,7 +37,7 @@
                       </div>
                       <div class="form-group">
                         <select name="psize" class="form-control">
-                          <option value="s">----Size----</option>
+                          <option value="">----Size----</option>
                           <option value="Ss">SS</option>
                           <option value="S">S</option>
                           <option value="M">M</option>
@@ -61,7 +62,7 @@
                      </div>
                     <div class="form-group">
                         <select name="pstatus"  class="form-control">
-                          <option value="0">----Status----</option>
+                          <option value="">----Status----</option>
                           <option value="1">Active</option>
                           <option value="2">Inactive</option>
                         </select>
