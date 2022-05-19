@@ -16,7 +16,7 @@
             <span class="menu-item-label">Product</span>
           </a><!-- br-menu-link -->
           <ul class="br-menu-sub">
-            <li class="sub-item"><a href="card-dashboard.html" class="sub-link">Manage Product</a></li>
+            <li class="sub-item"><a href="{{Route('manage')}}" class="sub-link">Manage Product</a></li>
             <li class="sub-item"><a href="{{ Route('create') }}" class="sub-link">Add Product</a></li>
           </ul>
         </li>

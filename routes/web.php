@@ -29,6 +29,14 @@ Route::group(['prefix'=>'/product'],function(){
     Route::post('/store','App\Http\Controllers\Backend\ProductController@store')->name('store');
 
     Route::get('/create','App\Http\Controllers\Backend\ProductController@create')->name('create');
+
+    Route::get('/manage','App\Http\Controllers\Backend\ProductController@index')->name('manage');
+
+    Route::get('/edit/{id}','App\Http\Controllers\Backend\ProductController@edit')->name('edit');
+
+    Route::post('/update/{id}','App\Http\Controllers\Backend\ProductController@update')->name('update');
+
+    Route::get('/delete/{id}','App\Http\Controllers\Backend\ProductController@destroy')->name('delete');
     
 
 

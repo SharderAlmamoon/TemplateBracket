@@ -15,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::orderby('id','asc')->get();
+        return view('backend.pages.product.manage',compact('products'));
     }
 
     /**
@@ -36,8 +37,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'pname'=>'required|unique:products',
+            'pdescription'=>'required',
+            'pcategory'=>'required',
+            'psize'=>'required',
+            'pcostprice'=>'required|numeric',
+            'psellprice'=>'required|numeric',
+            'pquantity'=>'required|numeric',
+            'pstatus'=>'required'
+        ]);
         $product=new Product();
-
         $product->pname = $request->pname;
         $product->pdescription = $request->pdescription;
         $product->pcategory = $request->pcategory;
@@ -48,7 +58,7 @@ class ProductController extends Controller
         $product->pstatus = $request->pstatus;
         // dd($product);
         $product->save();
-        return redirect()->route('dashboard');
+        return redirect()->route('manage');
 
     }
 
@@ -71,7 +81,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        return view('backend.pages.product.productedit',compact('product'));
     }
 
     /**
@@ -83,7 +94,28 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'pname'=>'required',
+            'pdescription'=>'required',
+            'pcategory'=>'required',
+            'psize'=>'required',
+            'pcostprice'=>'required|numeric',
+            'psellprice'=>'required|numeric',
+            'pquantity'=>'required|numeric',
+            'pstatus'=>'required'
+        ]);
+        $product=Product::find($id);
+        $product->pname = $request->pname;
+        $product->pdescription = $request->pdescription;
+        $product->pcategory = $request->pcategory;
+        $product->psize = $request->psize;
+        $product->pcostprice = $request->pcostprice;
+        $product->psellprice =$request->psellprice; 
+        $product->pquantity =$request->pquantity; 
+        $product->pstatus = $request->pstatus;
+        // dd($product);
+        $product->update();
+        return redirect()->route('manage');
     }
 
     /**
@@ -94,6 +126,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product=Product::find($id);
+        $product->delete();
+        return redirect()->route('manage');
     }
 }
