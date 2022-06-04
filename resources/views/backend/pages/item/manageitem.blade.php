@@ -21,45 +21,43 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>name</th>
-                    <th>description</th>
-                    <th>category</th>
-                    <th>size</th>
-                    <th>CostPrice</th>
-                    <th>SellPrice</th>
-                    <th>Quantity</th>
-                    <th>status</th>
+                    <th>item_code</th>
+                    <th>iname</th>
+                    <th>idescription</th>
+                    <th>icategory</th>
+                    <th>istatus</th>
+                    <th>iimage</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                   <tbody>
                     @php $sl=1; @endphp
-                     @foreach($products as $product)
+                     @foreach($itemall as $itema)
                      <tr>
                        <td>{{$sl}}</td>
-                       <td>{{$product->pname}}</td>
-                       <td>{{$product->pdescription}}</td>
-                       <td>{{$product->pcategory}}</td>
-                       <td>{{$product->psize}}</td>
-                       <td>{{$product->pcostprice}}</td>
-                       <td>{{$product->psellprice}}</td>
-                       <td>{{$product->pquantity}}</td>
+                       <td>{{$itema->item_code}}</td>
+                       <td>{{$itema->iname}}</td>
+                       <td>{{$itema->idescription}}</td>
+                       <td>{{$itema->category->name}}</td>
                        <td>
-                         @if($product->pstatus==1)
+                         @if($itema->istatus==1)
                          <span class="badge badge-info">Active</span>
                          @else
                          <span class="badge badge-warning">Inactive</span>
                          @endif
                        </td>
                        <td>
-                         <a class="btn btn-sm btn-success" href="{{Route('edit',$product->id)}}"><i class="fa fa-edit"></i></a>
-                         <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ProductModal{{$product->id}}"><i class="fa fa-trash"></i></button>
+                         <img height="80" src="{{asset('backend/itemimage/'.$itema->iimage)}}" alt="">
+                      </td>
+                       <td>
+                         <a class="btn btn-sm btn-success" href="{{Route('item.edit',$itema->id)}}"><i class="fa fa-edit"></i></a>
+                         <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ProductModal{{$itema->id}}"><i class="fa fa-trash"></i></button>
                        </td>
                      </tr>
                      <!-- MODAL -->
                      <!-- Button trigger modal -->
 <!-- Modal -->
-<div class="modal fade" id="ProductModal{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ProductModal{{$itema->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -73,7 +71,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
-        <a href="{{ Route('delete',$product->id) }}" class="btn btn-danger">Confirm</a>
+        <a href="{{ Route('item.delete',$itema->id) }}" class="btn btn-danger">Confirm</a>
       </div>
     </div>
   </div>

@@ -15,7 +15,8 @@ class Itemcontroller extends Controller
     // item index
     public function index()
     {
-        
+        $itemall = ItemModel::all();
+        return view('backend.pages.item.manageitem',compact('itemall'));
     }
     // item Create
     public function create()
@@ -56,7 +57,7 @@ class Itemcontroller extends Controller
                 $imageCustomNameuuu =md5(time().rand(00000,99999)).'.'.$img->getClientOriginalExtension();
                 $imagepath = public_path('backend/itemimage/itemimagegallery/'.$imageCustomNameuuu);
                 Image::make($img)->save($imagepath);
-                
+
                 $itemGInsert =new itemGallery();
                 $itemGInsert->item_code = $request->item_code;
                 $itemGInsert->iGmage = $imageCustomNameuuu;
@@ -65,5 +66,9 @@ class Itemcontroller extends Controller
             
         }
         return redirect()->route('item.manage');
+    }
+    // product Edit
+    public function edit($id){
+
     }
 }

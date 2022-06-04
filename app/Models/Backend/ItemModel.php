@@ -4,6 +4,7 @@ namespace App\Models\Backend;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+// use App\Models\Backend\Category;
 
 class ItemModel extends Model
 {
@@ -16,4 +17,7 @@ class ItemModel extends Model
         'istatus',
         'iimage',
     ];
+    public function category(){
+        return $this->belongsTo(Category::class,'icategory');
+    }
 }
