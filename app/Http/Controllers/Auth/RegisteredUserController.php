@@ -54,7 +54,11 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
+        if(Auth::user()->roll == 1 || Auth::user()->roll == 2){
         return redirect(RouteServiceProvider::HOME);
+        }
+        else{
+            return redirect('/');
+        }
     }
 }
