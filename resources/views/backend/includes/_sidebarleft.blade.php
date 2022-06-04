@@ -29,5 +29,15 @@
             <li class="sub-item"><a href="{{Route('category.manage')}}" class="sub-link">Manage Category</a></li>
           </ul>
         </li>
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+            <span class="menu-item-label">Item</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            <li class="sub-item"><a href="{{Route('item.manage')}}" class="sub-link">Manage item</a></li>
+            <li class="sub-item"><a href="{{ Route('item.create') }}" class="sub-link">Add Item</a></li>
+          </ul>
+        </li>
      </ul>
     </div><!-- br-sideleft -->

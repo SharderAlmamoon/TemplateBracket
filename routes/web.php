@@ -45,6 +45,18 @@ Route::group(['/admin'=>'prefix'],function(){
         Route::get('/delete/{id}','App\Http\Controllers\Backend\CategoryController@destroy')->middleware(['auth']);
     
     });
+
+    //ITEMALLWITH GALLERY
+    Route::group(['prefix'=>'/item'],function(){
+        Route::post('/itemstore','App\Http\Controllers\Backend\Itemcontroller@store')->middleware(['auth'])->name('item.store');
+        Route::get('/itemshow','App\Http\Controllers\Backend\Itemcontroller@show')->middleware(['auth'])->name('item.show');
+        Route::get('/itemmanage','App\Http\Controllers\Backend\Itemcontroller@index')->middleware(['auth'])->name('item.manage');
+        Route::get('/itemcreate','App\Http\Controllers\Backend\Itemcontroller@create')->middleware(['auth'])->name('item.create');
+        Route::get('/itemedit/{id}','App\Http\Controllers\Backend\Itemcontroller@edit')->middleware(['auth'])->name('item.edit');
+        Route::post('/itemupdate/{id}','App\Http\Controllers\Backend\Itemcontroller@update')->middleware(['auth'])->name('item.update');
+        Route::get('/itemdelete/{id}','App\Http\Controllers\Backend\Itemcontroller@destroy')->middleware(['auth'])->name('item.delete');
+    
+    });
 });
 
 
