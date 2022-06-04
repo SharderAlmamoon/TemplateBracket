@@ -4,11 +4,11 @@
       <div class="br-pagetitle">
         <i class="icon ion-ios-home-outline"></i>
         <div>
-          <h4>Product EDIT</h4>
+          <h4>Item</h4>
         </div>
         <div class="ml-auto px-5">
-          <a href="{{Route('dashboard')}}">Home</a>/
-          <a href="{{Route('manage')}}">ManageProduct</a>
+          <a href="{{Route('dashboard')}}">Home</a> /
+          <a href="{{Route('item.manage')}}">MAnageItem</a>
         </div>
       </div>
 
@@ -16,108 +16,96 @@
         <div class="row row-sm">
           <div class="col-sm-12">
             <div class="card p-3 shadow-base">
-              <form action="{{Route('update',$product->id)}}" method="post">
+              <form action="{{ Route('item.update',$item->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                        <label for="pname">Product name : </label>
-                        <input type="text" value="{{old('pname',$product->pname)}}" name="pname" placeholder="enter Product name" class="form-control" id="pname">
+                        <label for="item_code">item_code : </label>
+                        <input type="text" readonly value="{{old('item_code',$item->item_code)}}" name="item_code" placeholder="enter Item Code" class="form-control" id="item_code">
                         <span class="text-danger">
-                            @error('pname')
+                            @error('item_code')
+                              {{$message}}
+                            @enderror
+                        </span>
+                      </div>
+                    <div class="form-group">
+                        <label for="iname">item name : </label>
+                        <input type="text" value="{{old('iname',$item->iname)}}" name="iname" placeholder="enter iname " class="form-control" id="iname">
+                        <span class="text-danger">
+                            @error('iname')
                               {{$message}}
                             @enderror
                         </span>
                       </div>
                       <div class="form-group">
-                        <label for="pdescription">Product Description : </label>
-                        <textarea name="pdescription"  id="pdescription" cols="10" rows="4"placeholder="enter Product Description" class="form-control">{{old('pdescription',$product->pdescription)}}</textarea>
+                        <label for="idescription">Item Description : </label>
+                        <textarea name="idescription"  id="idescription" cols="10" rows="4"placeholder="enter idescription" class="form-control">{{old('idescription',$item->idescription)}}</textarea>
                         <span class="text-danger">
-                            @error('pdescription')
+                            @error('idescription')
                               {{$message}}
                             @enderror
                         </span>
                       </div>
                       <div class="form-group">
-                        <select name="pcategory"  class="form-control">
-                          <option value="">----Category----</option>
-
-                          <option value="Mans" @if($product->pcategory == 'Mans') selected @endif>Mans</option>
-
-                          <option value="WoMan" @if($product->pcategory == 'WoMan') selected @endif>WoMan</option>
-
-                          <option value="kids" @if($product->pcategory == 'kids') selected @endif>Kids</option>
-
-                          <option value="ledis" @if($product->pcategory == 'ledis') selected @endif>Ledis</option>
-
-                          <option value="jewelary" @if($product->pcategory == 'jewelary') selected @endif>jewelary</option>
+                        <select name="icategory"  class="form-control">
+                          <option value="">----ICategory----</option>
+                        @foreach($category as $cat)
+                          <option value="{{$cat->id}}" @if($cat->id == $item->icategory) selected @endif>{{$cat->name}}}</option>
+                          @endforeach
                         </select>
                          <span class="text-danger">
-                            @error('pcategory')
+                            @error('icategory')
                               {{$message}}
                             @enderror
                         </span>
                       </div>
                       <div class="form-group">
-                        <select name="psize" class="form-control">
-                          <option value="">----Size----</option>
-                          <option value="Ss" @if($product->psize == 'Ss') selected @endif>SS</option>
-                          <option value="S" @if($product->psize == 'S') selected @endif>S</option>
-                          <option value="M" @if($product->psize == 'M') selected @endif>M</option> 
-                          <option value="L" @if($product->psize == 'L') selected @endif>L</option>
-                          <option value="XL" @if($product->psize == 'XL') selected @endif>XL</option>
-                          <option value="XXL" @if($product->psize == 'XXL') selected @endif>XXL</option>
+                        <select name="istatus" class="form-control">
+                          <option value="">----istatus----</option>
+                          <option value="1" @if($item->istatus == 1) selected @endif>Active</option>
+                          <option value="2" @if($item->istatus == 2) selected @endif>Inactive</option>
+                         </select>
                         <span class="text-danger">
-                            @error('psize')
+                            @error('istatus')
                               {{$message}}
                             @enderror
                         </span>
-                       </select>
-                      </div>
-                  </div><div class="col-md-6">
+                      <!-- </div>
+                  </div><div class="col-md-6"> -->
                     <div class="form-group">
-                          <label for="pcostprice">Product CostPrice : </label>
-                          <input type="text" name="pcostprice" value="{{old('pcostprice',$product->pcostprice)}}" placeholder="enter Product CostPrice" class="form-control" id="pcostprice">
+                      <img heigth="40" width="200" src="{{asset('backend/itemimage/'.$item->iimage)}}" alt="">
+                      <br>    <label for="iimage">Item Image : </label>
+                          <input type="file" name="iimage" class="form-control" id="iimage">
                            <span class="text-danger">
-                            @error('pcostprice')
+                            @error('iimage')
                               {{$message}}
                             @enderror
                         </span>
                      </div> 
                      <div class="form-group">
-                          <label for="psellprice">Product SellPrice : </label>
-                          <input type="text" value="{{old('psellprice',$product->psellprice)}}" name="psellprice" placeholder="enter Product SellPrice" class="form-control" id="psellprice">
+                          <label for="iGmage">Item GalleryImage : </label>
+                          <input type="file" multiple  name="iGmage[]" placeholder="enter iGmage" class="form-control" id="iGmage">
                            <span class="text-danger">
-                            @error('psellprice')
+                            @error('iGmage')
                               {{$message}}
                             @enderror
                         </span>
                      </div>
-
                      <div class="form-group">
-                          <label for="pquantity">Product Quantity : </label>
-                          <input type="text" value="{{old('pquantity',$product->pquantity)}}" name="pquantity" placeholder="enter Product Quantity" class="form-control" id="pquantity">
-                      <span class="text-danger">
-                            @error('pquantity')
-                              {{$message}}
-                            @enderror
-                        </span>
+                         <button class="btn btn-dark form-control">Update Item Item</button>
                      </div>
-                    <div class="form-group">
-                        <select name="pstatus"  class="form-control">
-                          <option value="">----Status----</option>
-                          <option value="1" @if($product->pstatus == '1') selected @endif>Active</option>
-                          <option value="2" @if($product->pstatus == '2') selected @endif>Inactive</option>
-                        </select>
-                     <span class="text-danger">
-                            @error('pstatus')
-                              {{$message}}
-                            @enderror
-                        </span>
                     </div>
-                    <div class="form-group">
-                        <button class="btn btn-dark form-control">Update Product</button>
                     </div>
+                    <div class="col-md-6">
+                      <span class="text-warning font-weight-bold display-4">GALLERY IMAGE !</span>
+                     @foreach($galleryImage as $gallery)
+                      <div class="mb-3">
+                        <a class="btn btn-sm btn-warning" href="{{Route('item.gallery.delete',$gallery->id)}}"><i class="fa fa-trash"></i></a>
+                            <img width="200" src="{{asset('backend/itemimage/itemimagegallery/'.$gallery->iGmage)}}" alt="">                        
+                          </div>
+                      @endforeach
+                  </div>
                   </div>
                 </div>
               </form>

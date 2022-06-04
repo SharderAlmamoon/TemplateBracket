@@ -55,6 +55,7 @@ Route::group(['/admin'=>'prefix'],function(){
         Route::get('/itemedit/{id}','App\Http\Controllers\Backend\Itemcontroller@edit')->middleware(['auth'])->name('item.edit');
         Route::post('/itemupdate/{id}','App\Http\Controllers\Backend\Itemcontroller@update')->middleware(['auth'])->name('item.update');
         Route::get('/itemdelete/{id}','App\Http\Controllers\Backend\Itemcontroller@destroy')->middleware(['auth'])->name('item.delete');
+        Route::get('/itemdeleteed/{id}','App\Http\Controllers\Backend\Itemcontroller@delete')->middleware(['auth'])->name('item.gallery.delete');
     
     });
 });
